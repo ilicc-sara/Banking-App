@@ -1,0 +1,21 @@
+.container {
+  width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+  padding: 50px 0;
+  position: relative;
+  background-color: aqua;
+}
+
+input {
+  width: 300px;
+}
+
+.sign-up-text {
+  position: absolute;
+  bottom: -60px;
+}
