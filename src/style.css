@@ -1,6 +1,7 @@
-.container {
+.log-in-form,
+.sign-up-form {
   width: 700px;
-  margin: 0 auto;
+  margin: 20vh auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,7 +9,8 @@
   align-items: center;
   padding: 50px 0;
   position: relative;
-  background-color: aqua;
+  background-color: rgb(95, 140, 140);
+  border-radius: 20px;
 }
 
 input {
@@ -18,4 +20,28 @@ input {
 .sign-up-text {
   position: absolute;
   bottom: -60px;
+}
+
+a:link {
+  color: #ff0066;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #ff0066;
+}
+
+a:hover {
+  color: rgb(0, 255, 106);
+  font-weight: bold;
+  text-decoration: underline rgb(0, 255, 106);
+}
+
+a:active {
+  background-color: black;
+  font-style: italic;
+}
+
+.hidden {
+  display: none;
 }

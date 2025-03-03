@@ -7,11 +7,22 @@
     <title>Vite App</title>
   </head>
   <body>
-    <div class="container">
-      <input type="text" class="input-email" placeholder="Email or username" />
+    <form class="log-in-form">
+      <input type="text" class="input-email" placeholder="Email" />
       <input type="text" class="input-password" placeholder="Password" />
-      <p class="sign-up-text">Don't have an account? <a href="#">Sign Up</a></p>
-    </div>
+      <p class="sign-up-text">
+        Don't have an account? <a href="#" class="sign-up-link">Sign Up</a>
+      </p>
+    </form>
+
+    <form class="sign-up-form hidden">
+      <input type="text" class="input-email" placeholder="Email" />
+      <input type="text" class="input-password" placeholder="Password" />
+      <input type="text" class="input-password" placeholder="Username" />
+      <p class="sign-up-text">
+        Don't have an account? <a href="#" class="sign-up-link">Sign Up</a>
+      </p>
+    </form>
 
     <script type="module" src="/src/main.js"></script>
   </body>
