@@ -1,10 +1,12 @@
 "use strict";
 import "./style.css";
 
-const signUp = document.querySelector(".sign-up-link");
+const signUpLink = document.querySelector(".sign-up-link");
 
-console.log(signUp);
+const signUpForm = document.querySelector(".sign-up-form");
+const overlay = document.querySelector(".overlay");
 
-signUp.addEventListener("click", function (e) {
-  console.log("kliknuto sign up");
+signUpLink.addEventListener("click", function (e) {
+  signUpForm.classList.remove("hidden");
+  overlay.classList.remove("hidden");
 });

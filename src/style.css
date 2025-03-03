@@ -1,7 +1,6 @@
-.log-in-form,
-.sign-up-form {
-  width: 700px;
-  margin: 20vh auto;
+.log-in-form {
+  width: 600px;
+  margin: 35vh auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,6 +10,30 @@
   position: relative;
   background-color: rgb(95, 140, 140);
   border-radius: 20px;
+}
+
+.sign-up-form {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+  padding: 50px 0;
+  background-color: rgb(95, 140, 140);
+  border-radius: 20px;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  padding: 70px 50px;
+}
+
+.form-name {
+  position: absolute;
+  top: -45px;
 }
 
 input {
@@ -44,4 +67,15 @@ a:active {
 
 .hidden {
   display: none;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  z-index: 5;
 }
