@@ -64,6 +64,7 @@ class Account {
 
 logInForm.addEventListener("submit", function (e) {
   e.preventDefault();
+  console.log(inputEmail, inputPassword);
 });
 
 signUpForm.addEventListener("submit", function (e) {
