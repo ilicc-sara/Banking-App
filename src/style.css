@@ -79,3 +79,8 @@ a:active {
   backdrop-filter: blur(10px);
   z-index: 5;
 }
+
+.btn {
+  opacity: 0;
+  display: none;
+}

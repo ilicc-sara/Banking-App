@@ -6,6 +6,28 @@ const signUpLink = document.querySelector(".sign-up-link");
 const signUpForm = document.querySelector(".sign-up-form");
 const overlay = document.querySelector(".overlay");
 
+const logInForm = document.querySelector(".log-in-form");
+
+const inputEmailEl = document.querySelector(".input-email");
+const inputPasswordEl = document.querySelector(".input-password");
+
+const inputEmailEl2 = document.querySelector(".input-email-sign");
+const inputPasswordEl2 = document.querySelector(".input-password-sign");
+const inputUsernameEl2 = document.querySelector(".input-username-sign");
+
+console.log(inputEmailEl);
+console.log(inputPasswordEl);
+
+console.log(inputEmailEl2);
+console.log(inputPasswordEl2);
+console.log(inputUsernameEl2);
+
+let inputEmail;
+let inputPassword;
+let inputEmailSignUp;
+let inputPasswordSignUp;
+let inputUsernameSignUp;
+
 signUpLink.addEventListener("click", function (e) {
   signUpForm.classList.remove("hidden");
   overlay.classList.remove("hidden");
@@ -23,3 +45,13 @@ class Account {
     this.username = "";
   }
 }
+
+logInForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+  console.log(e.target);
+});
+
+signUpForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+  console.log(e.target);
+});
