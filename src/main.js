@@ -15,18 +15,34 @@ const inputEmailEl2 = document.querySelector(".input-email-sign");
 const inputPasswordEl2 = document.querySelector(".input-password-sign");
 const inputUsernameEl2 = document.querySelector(".input-username-sign");
 
-console.log(inputEmailEl);
-console.log(inputPasswordEl);
+// console.log(inputEmailEl);
+// console.log(inputPasswordEl);
 
-console.log(inputEmailEl2);
-console.log(inputPasswordEl2);
-console.log(inputUsernameEl2);
+// console.log(inputEmailEl2);
+// console.log(inputPasswordEl2);
+// console.log(inputUsernameEl2);
 
 let inputEmail;
 let inputPassword;
 let inputEmailSignUp;
 let inputPasswordSignUp;
 let inputUsernameSignUp;
+
+inputEmailEl.addEventListener("input", function (e) {
+  inputEmail = e.target.value;
+});
+inputPasswordEl.addEventListener("input", function (e) {
+  inputPassword = e.target.value;
+});
+inputEmailEl2.addEventListener("input", function (e) {
+  inputEmailSignUp = e.target.value;
+});
+inputPasswordEl2.addEventListener("input", function (e) {
+  inputPasswordSignUp = e.target.value;
+});
+inputUsernameEl2.addEventListener("input", function (e) {
+  inputUsernameSignUp = e.target.value;
+});
 
 signUpLink.addEventListener("click", function (e) {
   signUpForm.classList.remove("hidden");
@@ -48,10 +64,8 @@ class Account {
 
 logInForm.addEventListener("submit", function (e) {
   e.preventDefault();
-  console.log(e.target);
 });
 
 signUpForm.addEventListener("submit", function (e) {
   e.preventDefault();
-  console.log(e.target);
 });
