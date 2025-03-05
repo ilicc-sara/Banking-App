@@ -66,12 +66,32 @@ const account3 = {
   password: "3333",
 };
 
-const accounts = [account1, account2, account3];
+// const accounts = [account1, account2, account3];
+
+class Account {
+  constructor(email, password, username) {
+    this.email = email;
+    this.password = password;
+    this.username = username;
+  }
+}
+
+class AccountManager {
+  constructor() {
+    this.accounts = [account1, account2, account3];
+  }
+
+  add(acc) {
+    this.accounts.push(acc);
+  }
+}
+
+const manager = new AccountManager();
 
 logInForm.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  accounts.forEach(function (acc, i) {
+  manager.accounts.forEach(function (acc, i) {
     if (inputEmail === acc.email && inputPassword === acc.password) {
       signUpForm.classList.add("hidden");
       logInForm.classList.add("hidden");
@@ -89,12 +109,12 @@ logInForm.addEventListener("submit", function (e) {
 
 signUpForm.addEventListener("submit", function (e) {
   e.preventDefault();
-});
+  signUpForm.classList.add("hidden");
+  overlay.classList.add("hidden");
+  console.log(inputEmailSignUp, inputPasswordSignUp, inputUsernameSignUp);
 
-class Account {
-  constructor() {
-    this.email = "";
-    this.password = "";
-    this.username = "";
-  }
-}
+  // prettier-ignore
+  const newAccount = new Account(inputEmailSignUp, inputPasswordSignUp, inputUsernameSignUp);
+
+  manager.add(newAccount);
+});
