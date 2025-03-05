@@ -38,6 +38,11 @@
 
 input {
   width: 300px;
+  height: 25px;
+  padding-left: 10px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: inset 1px 1px 1px 1px rgba(128, 128, 128, 0.634);
 }
 
 .sign-up-text {

@@ -66,8 +66,6 @@ const account3 = {
   password: "3333",
 };
 
-// const accounts = [account1, account2, account3];
-
 class Account {
   constructor(email, password, username) {
     this.email = email;
@@ -91,18 +89,17 @@ const manager = new AccountManager();
 logInForm.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  manager.accounts.forEach(function (acc, i) {
+  manager.accounts.forEach(function (acc) {
     if (inputEmail === acc.email && inputPassword === acc.password) {
       signUpForm.classList.add("hidden");
       logInForm.classList.add("hidden");
       overlay.classList.add("hidden");
-
       homePage.classList.remove("hidden");
       user.textContent = `${
         acc.username[0].toUpperCase() + acc.username.slice(1).toLowerCase()
       }`;
     } else {
-      alert("Email or password is incorrect!");
+      // alert("Email or password is incorrect!");
     }
   });
 });
@@ -117,4 +114,8 @@ signUpForm.addEventListener("submit", function (e) {
   const newAccount = new Account(inputEmailSignUp, inputPasswordSignUp, inputUsernameSignUp);
 
   manager.add(newAccount);
+
+  inputEmailEl2.value = "";
+  inputPasswordEl2.value = "";
+  inputUsernameEl2.value = "";
 });
