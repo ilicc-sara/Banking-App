@@ -15,6 +15,9 @@ const inputEmailEl2 = document.querySelector(".input-email-sign");
 const inputPasswordEl2 = document.querySelector(".input-password-sign");
 const inputUsernameEl2 = document.querySelector(".input-username-sign");
 
+const homePage = document.querySelector(".page");
+const user = document.querySelector(".username");
+
 // console.log(inputEmailEl);
 // console.log(inputPasswordEl);
 
@@ -54,6 +57,24 @@ overlay.addEventListener("click", function (e) {
   overlay.classList.add("hidden");
 });
 
+const account1 = {
+  username: "sara",
+  email: "sara@gmail.com",
+  password: "1111",
+};
+const account2 = {
+  username: "jonas",
+  email: "jonas@gmail.com",
+  password: "2222",
+};
+const account3 = {
+  username: "pera",
+  email: "pera@gmail.com",
+  password: "3333",
+};
+
+const accounts = [account1, account2, account3];
+
 class Account {
   constructor() {
     this.email = "";
@@ -62,9 +83,24 @@ class Account {
   }
 }
 
+const rrrrr = true;
+
 logInForm.addEventListener("submit", function (e) {
   e.preventDefault();
   console.log(inputEmail, inputPassword);
+
+  accounts.forEach(function (acc, i) {
+    if (inputEmail === acc.email && inputPassword === acc.password) {
+      signUpForm.classList.add("hidden");
+      logInForm.classList.add("hidden");
+      overlay.classList.add("hidden");
+
+      homePage.classList.remove("hidden");
+      user.textContent = `${
+        acc.username[0].toUpperCase() + acc.username.slice(1).toLowerCase()
+      }`;
+    }
+  });
 });
 
 signUpForm.addEventListener("submit", function (e) {
