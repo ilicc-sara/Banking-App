@@ -18,13 +18,6 @@ const inputUsernameEl2 = document.querySelector(".input-username-sign");
 const homePage = document.querySelector(".page");
 const user = document.querySelector(".username");
 
-// console.log(inputEmailEl);
-// console.log(inputPasswordEl);
-
-// console.log(inputEmailEl2);
-// console.log(inputPasswordEl2);
-// console.log(inputUsernameEl2);
-
 let inputEmail;
 let inputPassword;
 let inputEmailSignUp;
@@ -75,19 +68,8 @@ const account3 = {
 
 const accounts = [account1, account2, account3];
 
-class Account {
-  constructor() {
-    this.email = "";
-    this.password = "";
-    this.username = "";
-  }
-}
-
-const rrrrr = true;
-
 logInForm.addEventListener("submit", function (e) {
   e.preventDefault();
-  console.log(inputEmail, inputPassword);
 
   accounts.forEach(function (acc, i) {
     if (inputEmail === acc.email && inputPassword === acc.password) {
@@ -99,6 +81,8 @@ logInForm.addEventListener("submit", function (e) {
       user.textContent = `${
         acc.username[0].toUpperCase() + acc.username.slice(1).toLowerCase()
       }`;
+    } else {
+      alert("Email or password is incorrect!");
     }
   });
 });
@@ -106,3 +90,11 @@ logInForm.addEventListener("submit", function (e) {
 signUpForm.addEventListener("submit", function (e) {
   e.preventDefault();
 });
+
+class Account {
+  constructor() {
+    this.email = "";
+    this.password = "";
+    this.username = "";
+  }
+}
