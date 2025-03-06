@@ -10,8 +10,6 @@ const logInForm = document.querySelector(".log-in-form");
 
 const inputEmailEl = document.querySelector(".input-email");
 const inputPasswordEl = document.querySelector(".input-password");
-// prettier-ignore
-const inputConfirmPasswordEl = document.querySelector('.input-confirm-password')
 
 const inputEmailEl2 = document.querySelector(".input-email-sign");
 const inputPasswordEl2 = document.querySelector(".input-password-sign");
