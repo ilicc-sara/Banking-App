@@ -123,6 +123,7 @@ a:active {
 
 .email-error,
 .password-error,
+.confirm-password-error,
 .email-error-sign,
 .password-error-sign {
   font-size: 12px;
@@ -141,6 +142,12 @@ a:active {
   position: absolute;
   left: 150px;
   top: 128px;
+}
+
+.confirm-password-error {
+  position: absolute;
+  left: 150px;
+  top: 174px;
 }
 
 .email-error-sign {

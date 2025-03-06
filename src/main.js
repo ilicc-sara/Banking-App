@@ -10,6 +10,8 @@ const logInForm = document.querySelector(".log-in-form");
 
 const inputEmailEl = document.querySelector(".input-email");
 const inputPasswordEl = document.querySelector(".input-password");
+// prettier-ignore
+const inputConfirmPasswordEl = document.querySelector('.input-confirm-password')
 
 const inputEmailEl2 = document.querySelector(".input-email-sign");
 const inputPasswordEl2 = document.querySelector(".input-password-sign");
@@ -24,11 +26,14 @@ const errorBtn = document.querySelector(".error-btn");
 const emailError = document.querySelector(".email-error");
 const passwordError = document.querySelector(".password-error");
 
+// const confirmPasswordError = document.querySelector(".confirm-password-error");
+
 const emailErrorSign = document.querySelector(".email-error-sign");
 const passwordErrorSign = document.querySelector(".password-error-sign");
 
 let inputEmail;
 let inputPassword;
+// let inputConfirmPassword;
 let inputEmailSignUp;
 let inputPasswordSignUp;
 let inputUsernameSignUp;
@@ -39,6 +44,9 @@ inputEmailEl.addEventListener("input", function (e) {
 inputPasswordEl.addEventListener("input", function (e) {
   inputPassword = e.target.value;
 });
+// inputConfirmPasswordEl.addEventListener("input", function (e) {
+//   inputConfirmPassword = e.target.value;
+// });
 inputEmailEl2.addEventListener("input", function (e) {
   inputEmailSignUp = e.target.value;
 });
@@ -133,8 +141,9 @@ logInForm.addEventListener("submit", function (e) {
 
   createErrorNotification(inputEmail, inputPassword);
 
-  manager.accounts.forEach(function (acc) {
-    if (inputEmail === acc.email && inputPassword === acc.password) {
+  manager.accounts.find(function (acc) {
+    // prettier-ignore
+    if (inputEmail === acc.email && inputPassword === acc.password) {     /// && inputConfirmPassword === acc.password
       logInForm.classList.add("hidden");
 
       homePage.classList.remove("hidden");
