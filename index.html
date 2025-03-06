@@ -12,77 +12,39 @@
 
       <input type="text" class="input-email" placeholder="Email" required />
 
-      <label class="email-error hidden">*Incorrect Email Form</label>
-      <!--////////////////////////////////////////////////////-->
+      <!-- prettier-ignore -->
+      <input type="password" class="input-password" placeholder="Password" required />
 
-      <input
-        type="password"
-        class="input-password"
-        placeholder="Password"
-        required
-      />
+      <!-- prettier-ignore -->
+      <p class="sign-up-text">Don't have an account? <a href="#" class="sign-up-link">Sign Up</a></p>
 
-      <label class="password-error hidden">
-        *Password should contain al least 4 characters
-        <!--////////////////////////////////////////////////////-->
-      </label>
+      <!-- prettier-ignore -->
+      <div class="error-text hidden">Email or password is incorrect!<div class="error-btn">X</div></div>
 
-      <!-- <input
-        type="password"
-        class="input-confirm-password"
-        placeholder="Confirm Password"
-        required
-      />
-
-      <label class="confirm-password-error hidden">
-        *Password doesn't match
-      </label> -->
-
-      <p class="sign-up-text">
-        Don't have an account? <a href="#" class="sign-up-link">Sign Up</a>
-      </p>
-      <div class="error-text hidden">
-        Email or password is incorrect!
-        <div class="error-btn">X</div>
-        <!-- Email or password is incorrect! <button class="error-btn">X</button> -->
-      </div>
+      <!-- Button for submiting form -->
       <button class="btn"></button>
     </form>
 
     <form class="sign-up-form hidden">
       <p class="form-name">Sign Up</p>
-      <input
-        type="text"
-        class="input-email-sign"
-        placeholder="Email"
-        required
-      />
-      <label class="email-error-sign hidden">*Incorrect Email Form</label>
-      <!--////////////////////////////////////////////////////-->
-      <input
-        type="password"
-        class="input-password-sign"
-        placeholder="Password"
-        required
-      />
-      <label class="password-error-sign hidden">
-        *Password should contain al least 4 characters
-        <!--////////////////////////////////////////////////////-->
-      </label>
-      <input
-        type="text"
-        class="input-username-sign"
-        placeholder="Username"
-        required
-      />
+
+      <!-- prettier-ignore -->
+      <input type="text" class="input-email-sign" placeholder="Email" required />
+
+      <!-- prettier-ignore -->
+      <input type="password" class="input-password-sign" placeholder="Password" required />
+
+      <!-- prettier-ignore -->
+      <input type="text" class="input-username-sign" placeholder="Username" required />
+
+      <!-- Button for submiting form -->
       <button class="btn"></button>
     </form>
 
     <div class="overlay hidden"></div>
 
-    <div class="page hidden">
-      <p class="greet-text">Hello, <span class="username"></span>!</p>
-    </div>
+    <!-- prettier-ignore -->
+    <div class="page hidden"><p class="greet-text">Hello, <span class="username"></span>!</p></div>
 
     <script type="module" src="/src/main.js"></script>
   </body>

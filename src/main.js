@@ -20,20 +20,11 @@ const inputUsernameEl2 = document.querySelector(".input-username-sign");
 const homePage = document.querySelector(".page");
 const user = document.querySelector(".username");
 
-const errorText = document.querySelector(".error-text");
-const errorBtn = document.querySelector(".error-btn");
-
-const emailError = document.querySelector(".email-error");
-const passwordError = document.querySelector(".password-error");
-
-// const confirmPasswordError = document.querySelector(".confirm-password-error");
-
-const emailErrorSign = document.querySelector(".email-error-sign");
-const passwordErrorSign = document.querySelector(".password-error-sign");
+const errorText = document.querySelector(".error-text"); // div ispod inputa
+const errorBtn = document.querySelector(".error-btn"); // dugme za uklanjanje notifikacije
 
 let inputEmail;
 let inputPassword;
-// let inputConfirmPassword;
 let inputEmailSignUp;
 let inputPasswordSignUp;
 let inputUsernameSignUp;
@@ -44,9 +35,6 @@ inputEmailEl.addEventListener("input", function (e) {
 inputPasswordEl.addEventListener("input", function (e) {
   inputPassword = e.target.value;
 });
-// inputConfirmPasswordEl.addEventListener("input", function (e) {
-//   inputConfirmPassword = e.target.value;
-// });
 inputEmailEl2.addEventListener("input", function (e) {
   inputEmailSignUp = e.target.value;
 });
@@ -106,32 +94,6 @@ class AccountManager {
 
 const manager = new AccountManager();
 
-const createErrorNotification = function (email, password) {
-  if (!email.includes("@")) {
-    emailError.classList.remove("hidden");
-  } else {
-    emailError.classList.add("hidden");
-  }
-  if (!(password.length >= 4)) {
-    passwordError.classList.remove("hidden");
-  } else {
-    passwordError.classList.add("hidden");
-  }
-};
-
-const createErrorNotificationSignUp = function (email, password) {
-  if (!email.includes("@")) {
-    emailErrorSign.classList.remove("hidden");
-  } else {
-    emailErrorSign.classList.add("hidden");
-  }
-  if (!(password.length >= 4)) {
-    passwordErrorSign.classList.remove("hidden");
-  } else {
-    passwordErrorSign.classList.add("hidden");
-  }
-};
-
 errorBtn.addEventListener("click", function (e) {
   errorText.classList.add("hidden");
 });
@@ -139,11 +101,9 @@ errorBtn.addEventListener("click", function (e) {
 logInForm.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  createErrorNotification(inputEmail, inputPassword);
-
   manager.accounts.find(function (acc) {
     // prettier-ignore
-    if (inputEmail === acc.email && inputPassword === acc.password) {     /// && inputConfirmPassword === acc.password
+    if (inputEmail === acc.email && inputPassword === acc.password) {   
       logInForm.classList.add("hidden");
 
       homePage.classList.remove("hidden");
@@ -151,7 +111,6 @@ logInForm.addEventListener("submit", function (e) {
         acc.username[0].toUpperCase() + acc.username.slice(1).toLowerCase()
       }`;
     } else {
-      // alert("Email or password is incorrect!");
       errorText.classList.remove("hidden");
     }
   });
@@ -169,8 +128,6 @@ signUpForm.addEventListener("submit", function (e) {
     const newAccount = new Account(inputEmailSignUp, inputPasswordSignUp, inputUsernameSignUp);
 
     manager.add(newAccount);
-  } else {
-    createErrorNotificationSignUp(inputEmailSignUp, inputEmailSignUp);
   }
 
   inputEmailEl2.value = "";
