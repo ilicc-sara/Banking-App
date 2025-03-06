@@ -49,6 +49,32 @@ input {
   position: absolute;
   bottom: -60px;
 }
+.error-text {
+  position: absolute;
+  bottom: 5px;
+  background-color: white;
+  padding: 2px 5px;
+  display: flex;
+  gap: 15px;
+  border-radius: 5px;
+}
+
+.error-btn {
+  background-color: #ffffff;
+  height: 20px;
+  width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  border: 1px solid #ff0066;
+  color: #ff0066;
+}
+
+.error-btn:hover {
+  background-color: #ff0066;
+  color: white;
+}
 
 a:link {
   color: #ff0066;

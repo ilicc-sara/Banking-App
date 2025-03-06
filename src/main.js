@@ -18,6 +18,9 @@ const inputUsernameEl2 = document.querySelector(".input-username-sign");
 const homePage = document.querySelector(".page");
 const user = document.querySelector(".username");
 
+const errorText = document.querySelector(".error-text");
+const errorBtn = document.querySelector(".error-btn");
+
 let inputEmail;
 let inputPassword;
 let inputEmailSignUp;
@@ -86,8 +89,25 @@ class AccountManager {
 
 const manager = new AccountManager();
 
+const createErrorNotification = function (email, password) {
+  if (email.includes("@")) {
+    console.log("Imejl je validan");
+  } else {
+    console.log("Imejl nije validan");
+  }
+  if (password.length >= 4) {
+    console.log("Password ima 4 ili vise slova");
+  }
+};
+
+errorBtn.addEventListener("click", function (e) {
+  errorText.classList.add("hidden");
+});
+
 logInForm.addEventListener("submit", function (e) {
   e.preventDefault();
+
+  createErrorNotification(inputEmail, inputPassword);
 
   manager.accounts.forEach(function (acc) {
     if (inputEmail === acc.email && inputPassword === acc.password) {
@@ -99,6 +119,7 @@ logInForm.addEventListener("submit", function (e) {
       }`;
     } else {
       // alert("Email or password is incorrect!");
+      errorText.classList.remove("hidden");
     }
   });
 });
