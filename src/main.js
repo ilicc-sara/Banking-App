@@ -91,9 +91,8 @@ logInForm.addEventListener("submit", function (e) {
 
   manager.accounts.forEach(function (acc) {
     if (inputEmail === acc.email && inputPassword === acc.password) {
-      signUpForm.classList.add("hidden");
       logInForm.classList.add("hidden");
-      overlay.classList.add("hidden");
+
       homePage.classList.remove("hidden");
       user.textContent = `${
         acc.username[0].toUpperCase() + acc.username.slice(1).toLowerCase()
