@@ -9,13 +9,24 @@
   <body>
     <form class="log-in-form">
       <p class="form-name">Log In</p>
+
       <input type="text" class="input-email" placeholder="Email" required />
+
+      <label class="email-error hidden">*Incorrect Email Form</label>
+      <!--////////////////////////////////////////////////////-->
+
       <input
         type="password"
         class="input-password"
         placeholder="Password"
         required
       />
+
+      <label class="password-error hidden">
+        *Password should contain al least 4 characters
+        <!--////////////////////////////////////////////////////-->
+      </label>
+
       <p class="sign-up-text">
         Don't have an account? <a href="#" class="sign-up-link">Sign Up</a>
       </p>
@@ -35,12 +46,18 @@
         placeholder="Email"
         required
       />
+      <label class="email-error-sign hidden">*Incorrect Email Form</label>
+      <!--////////////////////////////////////////////////////-->
       <input
         type="password"
         class="input-password-sign"
         placeholder="Password"
         required
       />
+      <label class="password-error-sign hidden">
+        *Password should contain al least 4 characters
+        <!--////////////////////////////////////////////////////-->
+      </label>
       <input
         type="text"
         class="input-username-sign"

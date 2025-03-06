@@ -21,6 +21,12 @@ const user = document.querySelector(".username");
 const errorText = document.querySelector(".error-text");
 const errorBtn = document.querySelector(".error-btn");
 
+const emailError = document.querySelector(".email-error");
+const passwordError = document.querySelector(".password-error");
+
+const emailErrorSign = document.querySelector(".email-error-sign");
+const passwordErrorSign = document.querySelector(".password-error-sign");
+
 let inputEmail;
 let inputPassword;
 let inputEmailSignUp;
@@ -46,6 +52,9 @@ inputUsernameEl2.addEventListener("input", function (e) {
 signUpLink.addEventListener("click", function (e) {
   signUpForm.classList.remove("hidden");
   overlay.classList.remove("hidden");
+
+  emailErrorSign.classList.add("hidden");
+  passwordErrorSign.classList.add("hidden");
 });
 
 overlay.addEventListener("click", function (e) {
@@ -90,13 +99,28 @@ class AccountManager {
 const manager = new AccountManager();
 
 const createErrorNotification = function (email, password) {
-  if (email.includes("@")) {
-    console.log("Imejl je validan");
+  if (!email.includes("@")) {
+    emailError.classList.remove("hidden");
   } else {
-    console.log("Imejl nije validan");
+    emailError.classList.add("hidden");
   }
-  if (password.length >= 4) {
-    console.log("Password ima 4 ili vise slova");
+  if (!(password.length >= 4)) {
+    passwordError.classList.remove("hidden");
+  } else {
+    passwordError.classList.add("hidden");
+  }
+};
+
+const createErrorNotificationSignUp = function (email, password) {
+  if (!email.includes("@")) {
+    emailErrorSign.classList.remove("hidden");
+  } else {
+    emailErrorSign.classList.add("hidden");
+  }
+  if (!(password.length >= 4)) {
+    passwordErrorSign.classList.remove("hidden");
+  } else {
+    passwordErrorSign.classList.add("hidden");
   }
 };
 
@@ -126,14 +150,19 @@ logInForm.addEventListener("submit", function (e) {
 
 signUpForm.addEventListener("submit", function (e) {
   e.preventDefault();
-  signUpForm.classList.add("hidden");
-  overlay.classList.add("hidden");
-  console.log(inputEmailSignUp, inputPasswordSignUp, inputUsernameSignUp);
 
-  // prettier-ignore
-  const newAccount = new Account(inputEmailSignUp, inputPasswordSignUp, inputUsernameSignUp);
+  if (inputEmailSignUp.includes("@") && inputPasswordSignUp.length >= 4) {
+    signUpForm.classList.add("hidden");
+    overlay.classList.add("hidden");
+    console.log(inputEmailSignUp, inputPasswordSignUp, inputUsernameSignUp);
 
-  manager.add(newAccount);
+    // prettier-ignore
+    const newAccount = new Account(inputEmailSignUp, inputPasswordSignUp, inputUsernameSignUp);
+
+    manager.add(newAccount);
+  } else {
+    createErrorNotificationSignUp(inputEmailSignUp, inputEmailSignUp);
+  }
 
   inputEmailEl2.value = "";
   inputPasswordEl2.value = "";
