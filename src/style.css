@@ -186,8 +186,14 @@ a:active {
 .sort-plus,
 .sort-minus {
   font-size: 18px;
-  border: 1px solid black;
+  border: 2px solid black;
   border-radius: 10px;
   background: none;
   padding: 3px 15px;
+}
+
+.sort-plus:hover,
+.sort-minus:hover {
+  cursor: pointer;
+  background-color: white;
 }
