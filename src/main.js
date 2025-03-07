@@ -66,7 +66,14 @@ class Account {
     this.email = email;
     this.password = password;
     this.username = username;
-    this.balance;
+    this.balance = [];
+    this.totalBalance;
+  }
+
+  setTotalBalance() {
+    this.totalBalance = this.balance.reduce((acc, cur) => {
+      acc + cur;
+    }, 0);
   }
 }
 
@@ -119,9 +126,16 @@ logInForm.addEventListener("submit", function (e) {
         item.innerHTML = `<div class="type-${(transaction > 0) ? "deposit" : "withdrawal"}"><span class="num-transaction">${i+1}</span> ${(transaction > 0) ? "Deposit" : "Withdrawal"}</div> <span class="date">07.03.2025.</span> <span class="number">${transaction}$</span>`;
         item.className = 'transaction-item';
 
-        transactionList.appendChild(item)
+        transactionList.appendChild(item);
 
-      })
+       
+      });
+      console.log(acc.balance.reduce((acc, cur)=> acc + cur));
+      totalBalanceEl.textContent = acc.balance.reduce((acc, cur)=> acc + cur);
+      totalDepositEl.textContent = acc.balance.filter(x => x > 0).reduce((acc, cur)=> acc + cur);
+      totalWithdrawalEl.textContent = acc.balance.filter(x => x < 0).reduce((acc, cur)=> acc + cur);
+      console.log(acc.totalBalance);
+
     } else {
       createErrorNotification(logInForm, 'Email or password is incorrect!')
     }
