@@ -19,6 +19,7 @@ const homePage = document.querySelector(".page");
 const user = document.querySelector(".username");
 
 const errorText = document.querySelector(".error-text"); // div ispod inputa
+const errorBtn = document.querySelector(".error-btn"); // btn za brisanje  error notifikacije
 
 let inputEmail;
 let inputPassword;
@@ -45,9 +46,6 @@ inputUsernameEl2.addEventListener("input", function (e) {
 signUpLink.addEventListener("click", function (e) {
   signUpForm.classList.remove("hidden");
   overlay.classList.remove("hidden");
-
-  emailErrorSign.classList.add("hidden");
-  passwordErrorSign.classList.add("hidden");
 });
 
 overlay.addEventListener("click", function (e) {
@@ -91,12 +89,14 @@ class AccountManager {
 
 const manager = new AccountManager();
 
-function createErrorNotification(text) {
+function createErrorNotification(parentElement, text) {
+  if (document.querySelector(".error-text")) return;
+
   const notification = document.createElement("div");
   notification.innerHTML = `${text} <div class="error-btn">X</div>`;
+  notification.className = "error-text";
 
-  logInForm.appendChild(notification).className = "error-text";
-
+  parentElement.appendChild(notification);
   const errorBtn = notification.querySelector(".error-btn");
 
   errorBtn.addEventListener("click", function (e) {
@@ -104,7 +104,7 @@ function createErrorNotification(text) {
   });
 }
 
-createErrorNotification("Error notification");
+// createErrorNotification("Error notification");
 
 logInForm.addEventListener("submit", function (e) {
   e.preventDefault();
@@ -119,7 +119,8 @@ logInForm.addEventListener("submit", function (e) {
         acc.username[0].toUpperCase() + acc.username.slice(1).toLowerCase()
       }`;
     } else {
-      errorText.classList.remove("hidden");
+      // errorText.classList.remove("hidden");
+      createErrorNotification(logInForm, 'Email or password is incorrect!')
     }
   });
 });
@@ -137,6 +138,7 @@ signUpForm.addEventListener("submit", function (e) {
 
     manager.add(newAccount);
   }
+  createErrorNotification(signUpForm, "Email or password is incorrect!");
 
   inputEmailEl2.value = "";
   inputPasswordEl2.value = "";
