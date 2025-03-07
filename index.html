@@ -7,7 +7,8 @@
     <title>Vite App</title>
   </head>
   <body>
-    <form class="log-in-form">
+    <!-- uklonjeno hidden radi pravljenja home page-a -->
+    <form class="log-in-form hidden">
       <p class="form-name">Log In</p>
 
       <input type="text" class="input-email" placeholder="Email" required />
@@ -44,7 +45,27 @@
     <div class="overlay hidden"></div>
 
     <!-- prettier-ignore -->
-    <div class="page hidden"><p class="greet-text">Hello, <span class="username"></span>!</p></div>
+    <div class="page-container">
+      <p class="greet-text">Hello, <span class="username"></span>!</p>
+    
+
+      <div class="transactions-container">
+        <ul class="transaction-list">
+          <!-- prettier-ignore -->
+          <li class="transaction-item"><div class="type-withdrawal"><span class="num-transaction">1</span> Withdrawal</div> <span class="date">07.03.2025.</span> <span class="number">500$</span></li>
+          <li class="transaction-item"><div class="type-deposit"><span class="num-transaction">1</span> Deposit</div> <span class="date">07.03.2025.</span> <span class="number">500$</span></li>
+          <li class="transaction-item"><div class="type-withdrawal"><span class="num-transaction">1</span> Withdrawal</div> <span class="date">07.03.2025.</span> <span class="number">500$</span></li>
+          <li class="transaction-item"><div class="type-deposit"><span class="num-transaction">1</span> Deposit</div> <span class="date">07.03.2025.</span> <span class="number">500$</span></li>
+        </ul>
+
+        
+      </div>
+      <div class="btn-container">
+        <button class="sort-plus">Sort +</button>
+        <button class="sort-minus">Sort -</button>
+      </div>
+    
+    </div>
 
     <script type="module" src="/src/main.js"></script>
   </body>
