@@ -1,25 +1,7 @@
 "use strict";
 import "./style.css";
-
-const signUpLink = document.querySelector(".sign-up-link");
-
-const signUpForm = document.querySelector(".sign-up-form");
-const overlay = document.querySelector(".overlay");
-
-const logInForm = document.querySelector(".log-in-form");
-
-const inputEmailEl = document.querySelector(".input-email");
-const inputPasswordEl = document.querySelector(".input-password");
-
-const inputEmailEl2 = document.querySelector(".input-email-sign");
-const inputPasswordEl2 = document.querySelector(".input-password-sign");
-const inputUsernameEl2 = document.querySelector(".input-username-sign");
-
-const homePage = document.querySelector(".page");
-const user = document.querySelector(".username");
-
-const errorText = document.querySelector(".error-text"); // div ispod inputa
-const errorBtn = document.querySelector(".error-btn"); // btn za brisanje  error notifikacije
+// prettier-ignore
+import { signUpLink, signUpForm, overlay, logInForm, inputEmailEl, inputPasswordEl, inputEmailEl2, inputPasswordEl2, inputUsernameEl2, homePage, user, errorText, errorBtn } from "./helpers";
 
 let inputEmail;
 let inputPassword;
@@ -119,7 +101,6 @@ logInForm.addEventListener("submit", function (e) {
         acc.username[0].toUpperCase() + acc.username.slice(1).toLowerCase()
       }`;
     } else {
-      // errorText.classList.remove("hidden");
       createErrorNotification(logInForm, 'Email or password is incorrect!')
     }
   });
@@ -137,8 +118,9 @@ signUpForm.addEventListener("submit", function (e) {
     const newAccount = new Account(inputEmailSignUp, inputPasswordSignUp, inputUsernameSignUp);
 
     manager.add(newAccount);
+  } else {
+    createErrorNotification(signUpForm, "Invalid email or password");
   }
-  createErrorNotification(signUpForm, "Email or password is incorrect!");
 
   inputEmailEl2.value = "";
   inputPasswordEl2.value = "";
