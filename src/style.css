@@ -125,7 +125,7 @@ a:active {
 }
 
 .page-container {
-  background-color: rgb(164, 195, 164);
+  /* background-color: rgb(164, 195, 164); */
   padding: 5px 80px;
   height: 100vh;
 }
@@ -175,10 +175,11 @@ a:active {
 }
 
 .btn-container {
-  position: absolute;
+  margin-top: 15px;
+  /* position: absolute; */
   background: none;
-  left: 25%;
-  bottom: 14%;
+  /* left: 25%; */
+  /* bottom: 14%; */
   display: flex;
   gap: 20px;
 }
@@ -196,4 +197,12 @@ a:active {
 .sort-minus:hover {
   cursor: pointer;
   background-color: white;
+}
+
+.account-info {
+  display: flex;
+  gap: 40px;
+  margin-top: 15px;
+  /* position: absolute; */
+  /* bottom: 9%; */
 }

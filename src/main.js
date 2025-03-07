@@ -1,7 +1,7 @@
 "use strict";
 import "./style.css";
 // prettier-ignore
-import { signUpLink, signUpForm, overlay, logInForm, inputEmailEl, inputPasswordEl, inputEmailEl2, inputPasswordEl2, inputUsernameEl2, homePage, user, errorText, errorBtn } from "./helpers";
+import { signUpLink, signUpForm, overlay, logInForm, inputEmailEl, inputPasswordEl, inputEmailEl2, inputPasswordEl2, inputUsernameEl2, homePage, user, errorText, errorBtn, transactionList } from "./helpers";
 
 let inputEmail;
 let inputPassword;
@@ -39,16 +39,19 @@ const account1 = {
   username: "sara",
   email: "sara@gmail.com",
   password: "1111",
+  balance: [200, 300, -400, 1000, -700],
 };
 const account2 = {
   username: "jonas",
   email: "jonas@gmail.com",
   password: "2222",
+  balance: [600, 500, -800, 2000, -1700],
 };
 const account3 = {
   username: "pera",
   email: "pera@gmail.com",
   password: "3333",
+  balance: [100, 900, -500, 1200, -600],
 };
 
 class Account {
@@ -56,6 +59,7 @@ class Account {
     this.email = email;
     this.password = password;
     this.username = username;
+    this.balance;
   }
 }
 
@@ -100,6 +104,16 @@ logInForm.addEventListener("submit", function (e) {
       user.textContent = `${
         acc.username[0].toUpperCase() + acc.username.slice(1).toLowerCase()
       }`;
+
+      acc.balance.forEach((transaction, i) => {
+        
+        const item = document.createElement('li');
+        // prettier-ignore
+        item.innerHTML = `<div class="type-${(transaction > 0) ? "deposit" : "withdrawal"}"><span class="num-transaction">${i+1}</span> ${(transaction > 0) ? "Deposit" : "Withdrawal"}</div> <span class="date">07.03.2025.</span> <span class="number">${transaction}$</span>`;
+        item.className = 'transaction-item';
+
+        transactionList.appendChild(item)
+      })
     } else {
       createErrorNotification(logInForm, 'Email or password is incorrect!')
     }
