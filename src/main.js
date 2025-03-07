@@ -1,14 +1,10 @@
 "use strict";
 import "./style.css";
 // prettier-ignore
-import { signUpLink, signUpForm, overlay, logInForm, inputEmailEl, inputPasswordEl, inputEmailEl2, inputPasswordEl2, inputUsernameEl2, homePage, user, errorText, errorBtn, transactionList } from "./helpers";
+import { signUpLink, signUpForm, overlay, logInForm, inputEmailEl, inputPasswordEl, inputEmailEl2, inputPasswordEl2, inputUsernameEl2, homePage, user, errorText, errorBtn, transactionList, totalBalanceEl, totalDepositEl, totalWithdrawalEl } from "./helpers";
 
 const sortPlus = document.querySelector(".sort-plus");
 const sortMinus = document.querySelector(".sort-minus");
-
-const totalBalanceEl = document.querySelector(".total-balance");
-const totalDepositEl = document.querySelector(".total-income");
-const totalWithdrawalEl = document.querySelector(".total-withdrawal");
 
 let inputEmail;
 let inputPassword;

@@ -18,3 +18,7 @@ export const errorText = document.querySelector(".error-text"); // div ispod inp
 export const errorBtn = document.querySelector(".error-btn"); // btn za brisanje  error notifikacije
 
 export const transactionList = document.querySelector(".transaction-list");
+
+export const totalBalanceEl = document.querySelector(".total-balance");
+export const totalDepositEl = document.querySelector(".total-income");
+export const totalWithdrawalEl = document.querySelector(".total-withdrawal");
