@@ -19,7 +19,6 @@ const homePage = document.querySelector(".page");
 const user = document.querySelector(".username");
 
 const errorText = document.querySelector(".error-text"); // div ispod inputa
-const errorBtn = document.querySelector(".error-btn"); // dugme za uklanjanje notifikacije
 
 let inputEmail;
 let inputPassword;
@@ -92,9 +91,20 @@ class AccountManager {
 
 const manager = new AccountManager();
 
-errorBtn.addEventListener("click", function (e) {
-  errorText.classList.add("hidden");
-});
+function createErrorNotification(text) {
+  const notification = document.createElement("div");
+  notification.innerHTML = `${text} <div class="error-btn">X</div>`;
+
+  logInForm.appendChild(notification).className = "error-text";
+
+  const errorBtn = notification.querySelector(".error-btn");
+
+  errorBtn.addEventListener("click", function (e) {
+    notification.remove();
+  });
+}
+
+createErrorNotification("Error notification");
 
 logInForm.addEventListener("submit", function (e) {
   e.preventDefault();

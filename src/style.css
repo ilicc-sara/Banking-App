@@ -75,6 +75,7 @@ input {
 .error-btn:hover {
   background-color: #ff0066;
   color: white;
+  cursor: pointer;
 }
 
 a:link {
