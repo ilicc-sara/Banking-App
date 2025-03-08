@@ -2,6 +2,7 @@
 import "./style.css";
 // prettier-ignore
 import { signUpLink, signUpForm, overlay, logInForm, inputEmailEl, inputPasswordEl, inputEmailEl2, inputPasswordEl2, inputUsernameEl2, homePage, user, transactionList, totalBalanceEl, totalDepositEl, totalWithdrawalEl, sortContainer } from "./helpers";
+// import { createTransactionElement } from "./helpers";
 
 let inputEmail;
 let inputPassword;
@@ -116,7 +117,6 @@ logInForm.addEventListener("submit", function (e) {
     // prettier-ignore
     if (inputEmail === acc.email && inputPassword === acc.password) {   
       activeAccount = acc;
-      console.log(activeAccount);
       logInForm.classList.add("hidden");
 
       homePage.classList.remove("hidden");
