@@ -1,16 +1,15 @@
 "use strict";
 import "./style.css";
 // prettier-ignore
-import { signUpLink, signUpForm, overlay, logInForm, inputEmailEl, inputPasswordEl, inputEmailEl2, inputPasswordEl2, inputUsernameEl2, homePage, user, errorText, errorBtn, transactionList, totalBalanceEl, totalDepositEl, totalWithdrawalEl } from "./helpers";
-
-const sortPlus = document.querySelector(".sort-plus");
-const sortMinus = document.querySelector(".sort-minus");
+import { signUpLink, signUpForm, overlay, logInForm, inputEmailEl, inputPasswordEl, inputEmailEl2, inputPasswordEl2, inputUsernameEl2, homePage, user, transactionList, totalBalanceEl, totalDepositEl, totalWithdrawalEl, sortContainer } from "./helpers";
 
 let inputEmail;
 let inputPassword;
 let inputEmailSignUp;
 let inputPasswordSignUp;
 let inputUsernameSignUp;
+
+let activeAccount;
 
 inputEmailEl.addEventListener("input", function (e) {
   inputEmail = e.target.value;
@@ -62,15 +61,14 @@ class Account {
     this.email = email;
     this.password = password;
     this.username = username;
-    this.balance = [];
-    this.totalBalance;
+    this.balance;
   }
 
-  setTotalBalance() {
-    this.totalBalance = this.balance.reduce((acc, cur) => {
-      acc + cur;
-    }, 0);
-  }
+  // setTotalBalance() {
+  //   return this.balance.reduce((acc, cur) => {
+  //     acc + cur;
+  //   }, 0);
+  // }
 }
 
 class AccountManager {
@@ -100,6 +98,15 @@ function createErrorNotification(parentElement, text) {
   });
 }
 
+function createTransactionElement(transaction, i) {
+  const item = document.createElement("li");
+  // prettier-ignore
+  item.innerHTML = `<div class="type-${(transaction > 0) ? "deposit" : "withdrawal"}"><span class="num-transaction">${i+1}</span> ${(transaction > 0) ? "Deposit" : "Withdrawal"}</div> <span class="date">07.03.2025.</span> <span class="number">${transaction}$</span>`;
+  item.className = "transaction-item";
+
+  transactionList.appendChild(item);
+}
+
 // createErrorNotification("Error notification");
 
 logInForm.addEventListener("submit", function (e) {
@@ -108,6 +115,8 @@ logInForm.addEventListener("submit", function (e) {
   manager.accounts.find(function (acc) {
     // prettier-ignore
     if (inputEmail === acc.email && inputPassword === acc.password) {   
+      activeAccount = acc;
+      console.log(activeAccount);
       logInForm.classList.add("hidden");
 
       homePage.classList.remove("hidden");
@@ -116,21 +125,16 @@ logInForm.addEventListener("submit", function (e) {
       }`;
 
       acc.balance.forEach((transaction, i) => {
-        
-        const item = document.createElement('li');
-        // prettier-ignore
-        item.innerHTML = `<div class="type-${(transaction > 0) ? "deposit" : "withdrawal"}"><span class="num-transaction">${i+1}</span> ${(transaction > 0) ? "Deposit" : "Withdrawal"}</div> <span class="date">07.03.2025.</span> <span class="number">${transaction}$</span>`;
-        item.className = 'transaction-item';
-
-        transactionList.appendChild(item);
+        createTransactionElement(transaction, i)
 
        
       });
-      console.log(acc.balance.reduce((acc, cur)=> acc + cur));
+      // console.log(acc.balance.reduce((acc, cur)=> acc + cur));
       totalBalanceEl.textContent = acc.balance.reduce((acc, cur)=> acc + cur);
       totalDepositEl.textContent = acc.balance.filter(x => x > 0).reduce((acc, cur)=> acc + cur);
       totalWithdrawalEl.textContent = acc.balance.filter(x => x < 0).reduce((acc, cur)=> acc + cur);
-      console.log(acc.totalBalance);
+
+      // console.log(acc.setTotalBalance());
 
     } else {
       createErrorNotification(logInForm, 'Email or password is incorrect!')
@@ -157,4 +161,29 @@ signUpForm.addEventListener("submit", function (e) {
   inputEmailEl2.value = "";
   inputPasswordEl2.value = "";
   inputUsernameEl2.value = "";
+});
+
+sortContainer.addEventListener("click", function (e) {
+  // prettier-ignore
+  if (!e.target.classList.contains("sort-plus") && !e.target.classList.contains("sort-minus")) return;
+
+  if (e.target.classList.contains("sort-plus")) {
+    transactionList.innerHTML = "";
+
+    const sortedAscending = activeAccount.balance.sort();
+
+    sortedAscending.forEach((transaction, i) => {
+      createTransactionElement(transaction, i);
+    });
+  }
+
+  if (e.target.classList.contains("sort-minus")) {
+    transactionList.innerHTML = "";
+
+    const sortedDescending = activeAccount.balance.sort((a, b) => b - a);
+
+    sortedDescending.forEach((transaction, i) => {
+      createTransactionElement(transaction, i);
+    });
+  }
 });

@@ -14,11 +14,10 @@ export const inputUsernameEl2 = document.querySelector(".input-username-sign");
 export const homePage = document.querySelector(".page-container");
 export const user = document.querySelector(".username");
 
-export const errorText = document.querySelector(".error-text"); // div ispod inputa
-export const errorBtn = document.querySelector(".error-btn"); // btn za brisanje  error notifikacije
-
 export const transactionList = document.querySelector(".transaction-list");
 
 export const totalBalanceEl = document.querySelector(".total-balance");
 export const totalDepositEl = document.querySelector(".total-income");
 export const totalWithdrawalEl = document.querySelector(".total-withdrawal");
+
+export const sortContainer = document.querySelector(".sort-container");
