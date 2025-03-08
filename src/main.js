@@ -88,15 +88,15 @@ function createErrorNotification(parentElement, text) {
   if (document.querySelector(".error-text")) return;
 
   const notification = document.createElement("div");
-  notification.innerHTML = `${text} <div class="error-btn">X</div>`;
+  notification.innerHTML = `${text} <button type="button" class="error-btn">X</button>`;
   notification.className = "error-text";
 
   parentElement.appendChild(notification);
   const errorBtn = notification.querySelector(".error-btn");
 
-  errorBtn.addEventListener("click", function (e) {
-    notification.remove();
-  });
+  // errorBtn.addEventListener("click", function (e) {
+  //   notification.remove();
+  // });
 }
 
 function createTransactionElement(transaction, i) {
@@ -107,8 +107,6 @@ function createTransactionElement(transaction, i) {
 
   transactionList.appendChild(item);
 }
-
-// createErrorNotification("Error notification");
 
 logInForm.addEventListener("submit", function (e) {
   e.preventDefault();
@@ -140,6 +138,20 @@ logInForm.addEventListener("submit", function (e) {
       createErrorNotification(logInForm, 'Email or password is incorrect!')
     }
   });
+});
+
+signUpForm.addEventListener("click", function (e) {
+  if (e.target.classList.contains("error-btn")) {
+    const notification = e.target.closest(".error-text");
+    notification.remove();
+  }
+});
+
+logInForm.addEventListener("click", function (e) {
+  if (e.target.classList.contains("error-btn")) {
+    const notification = e.target.closest(".error-text");
+    notification.remove();
+  }
 });
 
 signUpForm.addEventListener("submit", function (e) {
