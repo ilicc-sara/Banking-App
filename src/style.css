@@ -6,6 +6,20 @@
 
 html {
   font-family: sans-serif;
+  background: linear-gradient(
+    to top left,
+    rgb(225, 225, 225),
+    rgb(218, 218, 218)
+  );
+  color: rgb(25, 36, 36);
+}
+
+.form-name {
+  font-weight: bold;
+  font-size: 30px;
+  color: rgb(95, 140, 140);
+  text-transform: uppercase;
+  /* letter-spacing: 7px; */
 }
 
 .log-in-form {
@@ -18,9 +32,15 @@ html {
   align-items: center;
   padding: 50px 0;
   position: relative;
-  background-color: rgb(95, 140, 140);
+  /* background-color: rgb(95, 140, 140); */
+  background: linear-gradient(
+    to bottom right,
+    rgb(128, 187, 158),
+    rgb(95, 140, 140)
+  );
   border-radius: 20px;
   padding-bottom: 60px;
+  box-shadow: 0 0 10px rgb(0, 0, 0, 0.2);
 }
 
 .sign-up-form {
@@ -31,8 +51,14 @@ html {
   gap: 20px;
   align-items: center;
   padding: 50px 0;
-  background-color: rgb(95, 140, 140);
+  /* background-color: rgb(95, 140, 140); */
+  background: linear-gradient(
+    to bottom right,
+    rgb(128, 187, 158),
+    rgb(95, 140, 140)
+  );
   border-radius: 20px;
+  box-shadow: 0 0 10px rgb(0, 0, 0, 0.2);
 
   position: fixed;
   top: 50%;
@@ -64,27 +90,32 @@ input {
   position: absolute;
   bottom: 5px;
   background-color: white;
-  padding: 2px 5px;
+  padding: 3px 10px;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   gap: 15px;
   border-radius: 5px;
+  font-size: 12px;
 }
 
 .error-btn {
   background-color: #ffffff;
-  height: 20px;
-  width: 20px;
+  /* height: fit-content;
+  width: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-  border: 1px solid #ff0066;
+  border: 1px solid #ff0066; */
+  border: none;
   color: #ff0066;
+  font-size: 12px;
 }
 
 .error-btn:hover {
-  background-color: #ff0066;
-  color: white;
+  /* background-color: #ff0066;
+  color: white; */
   cursor: pointer;
 }
 
@@ -138,6 +169,7 @@ a:active {
     rgb(225, 225, 225),
     rgb(218, 218, 218)
   );
+  padding: 0 150px;
   padding-top: 30px;
 }
 
@@ -148,7 +180,9 @@ a:active {
 
 .transactions-container {
   margin-top: 30px;
-  background-color: rgb(194, 187, 191);
+  /* background-color: rgb(194, 187, 191); */
+  background: none;
+
   width: 500px;
   height: 500px;
   border-radius: 15px;
@@ -188,14 +222,20 @@ a:active {
 .number {
   /* font-weight: bold; */
   font-size: 20px;
+  color: rgb(25, 36, 36);
 }
 
 .type-deposit {
-  background-image: linear-gradient(to top left, #39b385, #9be15d);
+  /* background-image: linear-gradient(to top left, rgb(8, 147, 66), #9be15d); */
+  background: linear-gradient(
+    to bottom right,
+    rgb(128, 187, 158),
+    rgb(95, 140, 140)
+  );
 }
 
 .type-withdrawal {
-  background-image: linear-gradient(to top left, #e52a5a, #ff585f);
+  background-image: linear-gradient(to top left, #c62e2e, #ff585f);
 }
 
 .sort-container {
@@ -210,11 +250,12 @@ a:active {
 
 .sort-plus,
 .sort-minus {
-  font-size: 18px;
-  border: 2px solid black;
+  font-size: 16px;
+  border: 2px solid rgb(77, 77, 77);
   border-radius: 10px;
   background: none;
   padding: 3px 15px;
+  color: rgb(77, 77, 77);
 }
 
 .sort-plus:hover,
@@ -228,7 +269,9 @@ a:active {
 .account-info {
   display: flex;
   gap: 40px;
-  margin-top: 15px;
+  margin-top: 20px;
+  font-size: 18px;
+  color: rgb(25, 36, 36);
   /* position: absolute; */
   /* bottom: 9%; */
 }

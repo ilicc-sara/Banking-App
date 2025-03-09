@@ -88,7 +88,7 @@ function createErrorNotification(parentElement, text) {
   if (document.querySelector(".error-text")) return;
 
   const notification = document.createElement("div");
-  notification.innerHTML = `${text} <button type="button" class="error-btn">X</button>`;
+  notification.innerHTML = `${text} <button type="button" class="error-btn">❌</button>`;
   notification.className = "error-text";
 
   parentElement.appendChild(notification);

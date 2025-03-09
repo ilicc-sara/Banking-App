@@ -49,29 +49,37 @@
       <p class="greet-text">Hello, <span class="username"></span>!</p>
     
 
-      <div class="transactions-container">
-        <ul class="transaction-list">
-          <!-- prettier-ignore -->
-          <!-- <li class="transaction-item"><div class="type-withdrawal"><span class="num-transaction">1</span> Withdrawal</div> <span class="date">07.03.2025.</span> <span class="number">500$</span></li>
-          <li class="transaction-item"><div class="type-deposit"><span class="num-transaction">1</span> Deposit</div> <span class="date">07.03.2025.</span> <span class="number">500$</span></li>
-          <li class="transaction-item"><div class="type-withdrawal"><span class="num-transaction">1</span> Withdrawal</div> <span class="date">07.03.2025.</span> <span class="number">500$</span></li>
-          <li class="transaction-item"><div class="type-deposit"><span class="num-transaction">1</span> Deposit</div> <span class="date">07.03.2025.</span> <span class="number">500$</span></li> -->
-        </ul>
+      <div class="left-side">
 
+        <div class="transactions-container">
+          <ul class="transaction-list">
+            <!-- prettier-ignore -->
+            <!-- <li class="transaction-item"><div class="type-withdrawal"><span class="num-transaction">1</span> Withdrawal</div> <span class="date">07.03.2025.</span> <span class="number">500$</span></li>
+            <li class="transaction-item"><div class="type-deposit"><span class="num-transaction">1</span> Deposit</div> <span class="date">07.03.2025.</span> <span class="number">500$</span></li>
+            <li class="transaction-item"><div class="type-withdrawal"><span class="num-transaction">1</span> Withdrawal</div> <span class="date">07.03.2025.</span> <span class="number">500$</span></li>
+            <li class="transaction-item"><div class="type-deposit"><span class="num-transaction">1</span> Deposit</div> <span class="date">07.03.2025.</span> <span class="number">500$</span></li> -->
+          </ul>
+          
+          
+        </div>
+        <div class="sort-container">
+          <button class="sort-plus">Sort +</button>
+          <button class="sort-minus">Sort -</button>
+        </div>
+        
+        
+        <div class="account-info">
+          <p>Total Balance: <span class="total-balance">0</span>$</p>
+          <p>Income: <span class="total-income">0</span>$</p>
+          <p>Withdrawal: <span class="total-withdrawal">0</span>$</p>
+        </div>
         
       </div>
-      <div class="sort-container">
-        <button class="sort-plus">Sort +</button>
-        <button class="sort-minus">Sort -</button>
-      </div>
 
 
-      <div class="account-info">
-        <h2>Total Balance: <span class="total-balance">0</span>$</h2>
-        <h2>Income: <span class="total-income">0</span>$</h2>
-        <h2>Withdrawal: <span class="total-withdrawal">0</span>$</h2>
+      <div class="right-side">
+        
       </div>
-    
     </div>
 
     <script type="module" src="/src/main.js"></script>
