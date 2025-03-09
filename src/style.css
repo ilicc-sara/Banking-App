@@ -178,6 +178,11 @@ a:active {
   font-weight: bold;
 }
 
+.account-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
 .transactions-container {
   margin-top: 30px;
   /* background-color: rgb(194, 187, 191); */
@@ -204,7 +209,7 @@ a:active {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 0.5px solid rgb(152, 152, 152);
+  border-bottom: 0.5px solid rgb(173, 172, 172);
 }
 
 .type-withdrawal,
@@ -274,4 +279,44 @@ a:active {
   color: rgb(25, 36, 36);
   /* position: absolute; */
   /* bottom: 9%; */
+}
+
+.right-side {
+  margin-top: 30px;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 20px;
+  width: 500px;
+  height: 500px;
+}
+
+.form {
+  background-color: skyblue;
+  width: 500px;
+  height: 154px;
+  border-radius: 15px;
+  padding: 35px;
+}
+
+.form.transfer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 20px;
+
+  /* align-items: start; */
+}
+
+.input-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-username-transfer,
+.input-number-transfer {
+  width: 175px;
+}
+
+.button-transfer {
+  width: 40px;
 }

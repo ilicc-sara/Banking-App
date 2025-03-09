@@ -62,7 +62,7 @@ class Account {
     this.email = email;
     this.password = password;
     this.username = username;
-    this.balance;
+    this.balance = [];
   }
 
   // setTotalBalance() {
@@ -71,7 +71,6 @@ class Account {
   //   }, 0);
   // }
 }
-
 class AccountManager {
   constructor() {
     this.accounts = [account1, account2, account3];

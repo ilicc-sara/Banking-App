@@ -8,7 +8,7 @@
   </head>
   <body>
     <!-- uklonjeno hidden radi pravljenja home page-a -->
-    <form class="log-in-form">
+    <form class="log-in-form hidden">
       <p class="form-name">Log In</p>
 
       <input type="text" class="input-email" placeholder="Email" required />
@@ -45,10 +45,11 @@
     <div class="overlay hidden"></div>
 
     <!-- prettier-ignore -->
-    <div class="page-container hidden">
+    <div class="page-container">
       <p class="greet-text">Hello, <span class="username"></span>!</p>
     
 
+      <div class="account-page">
       <div class="left-side">
 
         <div class="transactions-container">
@@ -78,8 +79,20 @@
 
 
       <div class="right-side">
-        
+        <form class="form transfer">
+          <label>Transfer money</label>
+          <div class="input-container">
+            <input type="text" class="input-username-transfer" placeholder="Username" required />
+            <input type="number" class="input-number-transfer" placeholder="Amount" required /> 
+            <button class="button-transfer">🡲</button>
+          </div>
+          
+        </form>
+
+        <form class="form loan"></form>
+        <form class="form delete"></form>
       </div>
+    </div>
     </div>
 
     <script type="module" src="/src/main.js"></script>
