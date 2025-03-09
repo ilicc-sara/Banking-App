@@ -42,7 +42,7 @@ const account1 = {
   username: "sara",
   email: "sara@gmail.com",
   password: "1111",
-  balance: [200, 300, -400, 1000, -700],
+  balance: [200, 300, -400, 1000, -700, 200, 300, -400, 1000, -700],
 };
 const account2 = {
   username: "jonas",
