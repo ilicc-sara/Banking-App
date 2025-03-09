@@ -21,3 +21,5 @@ export const totalDepositEl = document.querySelector(".total-income");
 export const totalWithdrawalEl = document.querySelector(".total-withdrawal");
 
 export const sortContainer = document.querySelector(".sort-container");
+
+export const logOut = document.querySelector(".log-out");

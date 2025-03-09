@@ -1,7 +1,7 @@
 "use strict";
 import "./style.css";
 // prettier-ignore
-import { signUpLink, signUpForm, overlay, logInForm, inputEmailEl, inputPasswordEl, inputEmailEl2, inputPasswordEl2, inputUsernameEl2, homePage, user, transactionList, totalBalanceEl, totalDepositEl, totalWithdrawalEl, sortContainer } from "./helpers";
+import { signUpLink, signUpForm, overlay, logInForm, inputEmailEl, inputPasswordEl, inputEmailEl2, inputPasswordEl2, inputUsernameEl2, homePage, user, transactionList, totalBalanceEl, totalDepositEl, totalWithdrawalEl, sortContainer, logOut } from "./helpers";
 // import { createTransactionElement } from "./helpers";
 
 let inputEmail;
@@ -136,6 +136,9 @@ logInForm.addEventListener("submit", function (e) {
     } else {
       createErrorNotification(logInForm, 'Email or password is incorrect!')
     }
+
+    inputEmailEl.value = "";
+    inputPasswordEl.value = "";
   });
 });
 
@@ -197,4 +200,9 @@ sortContainer.addEventListener("click", function (e) {
       createTransactionElement(transaction, i);
     });
   }
+});
+
+logOut.addEventListener("click", function (e) {
+  logInForm.classList.remove("hidden");
+  homePage.classList.add("hidden");
 });
