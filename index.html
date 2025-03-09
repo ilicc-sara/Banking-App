@@ -8,7 +8,7 @@
   </head>
   <body>
     <!-- uklonjeno hidden radi pravljenja home page-a -->
-    <form class="log-in-form hidden">
+    <form class="log-in-form">
       <p class="form-name">Log In</p>
 
       <input type="text" class="input-email" placeholder="Email" required />
@@ -45,7 +45,7 @@
     <div class="overlay hidden"></div>
 
     <!-- prettier-ignore -->
-    <div class="page-container">
+    <div class="page-container hidden">
       <p class="greet-text">Hello, <span class="username"></span>!</p>
     
 
@@ -80,17 +80,34 @@
 
       <div class="right-side">
         <form class="form transfer">
+
           <label>Transfer money</label>
           <div class="input-container">
             <input type="text" class="input-username-transfer" placeholder="Username" required />
             <input type="number" class="input-number-transfer" placeholder="Amount" required /> 
-            <button class="button-transfer">🡲</button>
+            <button class="button">🡲</button>
           </div>
           
         </form>
 
-        <form class="form loan"></form>
-        <form class="form delete"></form>
+        <form class="form loan">
+
+          <label>Request loan</label>
+          <div class="input-container-loan">
+            <input type="number" class="input-number-transfer" placeholder="Amount" required /> 
+            <button class="button">🡲</button>
+          </div>
+
+        </form>
+
+        <form class="form delete">
+          <label>Close account</label>
+          <div class="input-container">
+            <input type="text" class="input-username-transfer" placeholder="Username" required />
+            <input type="number" class="input-number-transfer" placeholder="Amount" required /> 
+            <button class="button">🡲</button>
+          </div>
+        </form>
       </div>
     </div>
     </div>

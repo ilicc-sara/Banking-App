@@ -291,14 +291,13 @@ a:active {
 }
 
 .form {
-  background-color: skyblue;
   width: 500px;
   height: 154px;
   border-radius: 15px;
   padding: 35px;
 }
 
-.form.transfer {
+.form {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -307,9 +306,35 @@ a:active {
   /* align-items: start; */
 }
 
+.loan {
+  background: linear-gradient(
+    to bottom right,
+    rgb(104, 158, 239),
+    rgb(94, 119, 194)
+  );
+}
+
+.transfer {
+  background: linear-gradient(
+    to bottom right,
+    rgb(128, 187, 158),
+    rgb(95, 140, 140)
+  );
+}
+
+.delete {
+  background-image: linear-gradient(to top left, #c62e2eab, #ff586095);
+}
+
 .input-container {
   display: flex;
   justify-content: space-between;
+}
+
+.input-container-loan {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
 }
 
 .input-username-transfer,
@@ -317,6 +342,21 @@ a:active {
   width: 175px;
 }
 
-.button-transfer {
+.button {
   width: 40px;
+  border-radius: 10px;
+  border: 0.5px solid gray;
+  color: rgb(25, 36, 36);
+  background-color: rgba(255, 255, 255, 0.792);
+}
+
+.button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: all 0.4;
+}
+
+label {
+  /* text-transform: uppercase; */
+  font-weight: bold;
 }
