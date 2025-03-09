@@ -173,9 +173,47 @@ a:active {
   padding-top: 30px;
 }
 
+.greet-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .greet-text {
   font-size: 28px;
   font-weight: bold;
+}
+
+.error-text-page {
+  background-color: white;
+  padding: 3px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+.error-btn-page {
+  background-color: #ffffff;
+  border: none;
+  color: #ff0066;
+  font-size: 12px;
+}
+
+.log-out {
+  background-image: linear-gradient(to top left, #c62e2e, #ff585f);
+  color: white;
+  padding: 5px 15px;
+  border-radius: 10px;
+  border: none;
+}
+
+.log-out:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: all 0.4;
 }
 
 .account-page {
