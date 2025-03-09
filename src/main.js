@@ -86,8 +86,8 @@ const manager = new AccountManager();
 function createErrorNotification(parentElement, text) {
   if (document.querySelector(".error-text")) return;
 
-  const notification = document.createElement("div");
-  notification.innerHTML = `${text} <button type="button" class="error-btn">❌</button>`;
+  const notification = document.createElement("ul");
+  notification.innerHTML = `<li > ${text} <button type="button" class="error-btn">❌</button> </li>`;
   notification.className = "error-text";
 
   parentElement.appendChild(notification);
@@ -128,8 +128,8 @@ logInForm.addEventListener("submit", function (e) {
       });
       // console.log(acc.balance.reduce((acc, cur)=> acc + cur));
       totalBalanceEl.textContent = acc.balance.reduce((acc, cur)=> acc + cur);
-      totalDepositEl.textContent = acc.balance.filter(x => x > 0).reduce((acc, cur)=> acc + cur);
-      totalWithdrawalEl.textContent = acc.balance.filter(x => x < 0).reduce((acc, cur)=> acc + cur);
+      totalDepositEl.textContent = acc.balance.filter(transaction => transaction > 0).reduce((acc, cur)=> acc + cur);
+      totalWithdrawalEl.textContent = acc.balance.filter(transaction => transaction < 0).reduce((acc, cur)=> acc + cur);
 
       // console.log(acc.setTotalBalance());
 
@@ -205,4 +205,5 @@ sortContainer.addEventListener("click", function (e) {
 logOut.addEventListener("click", function (e) {
   logInForm.classList.remove("hidden");
   homePage.classList.add("hidden");
+  transactionList.innerHTML = "";
 });

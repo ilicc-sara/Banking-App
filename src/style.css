@@ -87,6 +87,7 @@ input {
   bottom: -60px;
 }
 .error-text {
+  list-style: none;
   position: absolute;
   bottom: 5px;
   background-color: white;
@@ -97,6 +98,7 @@ input {
   gap: 15px;
   border-radius: 5px;
   font-size: 12px;
+  font-style: inherit;
 }
 
 .error-btn {
@@ -208,6 +210,7 @@ a:active {
   padding: 5px 15px;
   border-radius: 10px;
   border: none;
+  box-shadow: 0 0 10px rgb(0, 0, 0, 0.2);
 }
 
 .log-out:hover {
@@ -340,6 +343,7 @@ a:active {
   flex-direction: column;
   justify-content: flex-start;
   gap: 20px;
+  box-shadow: 0 0 10px rgb(0, 0, 0, 0.2);
 
   /* align-items: start; */
 }
