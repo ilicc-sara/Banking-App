@@ -23,3 +23,6 @@ export const totalWithdrawalEl = document.querySelector(".total-withdrawal");
 export const sortContainer = document.querySelector(".sort-container");
 
 export const logOut = document.querySelector(".log-out");
+
+export const loanForm = document.querySelector(".loan");
+export const inputLoanEl = document.querySelector(".input-number-loan");

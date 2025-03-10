@@ -1,11 +1,7 @@
 "use strict";
 import "./style.css";
 // prettier-ignore
-import { signUpLink, signUpForm, overlay, logInForm, inputEmailEl, inputPasswordEl, inputEmailEl2, inputPasswordEl2, inputUsernameEl2, homePage, user, transactionList, totalBalanceEl, totalDepositEl, totalWithdrawalEl, sortContainer, logOut } from "./helpers";
-// import { createTransactionElement } from "./helpers";
-
-const loanForm = document.querySelector(".loan");
-const inputLoanEl = document.querySelector(".input-number-loan");
+import { signUpLink, signUpForm, overlay, logInForm, inputEmailEl, inputPasswordEl, inputEmailEl2, inputPasswordEl2, inputUsernameEl2, homePage, user, transactionList, totalBalanceEl, totalDepositEl, totalWithdrawalEl, sortContainer, logOut, loanForm, inputLoanEl } from "./helpers";
 
 let inputEmail;
 let inputPassword;
