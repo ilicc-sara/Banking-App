@@ -76,6 +76,10 @@ class Account {
   sortDescending() {
     return this.balance.sort((a, b) => b - a);
   }
+
+  addTransaction(number) {
+    this.balance.push(number);
+  }
 }
 
 // prettier-ignore
@@ -121,6 +125,12 @@ function createTransactionElement(transaction, i) {
   transactionList.appendChild(item);
 }
 
+function updateInfoUI(acc) {
+  totalBalanceEl.textContent = acc.setTotalBalance();
+  totalDepositEl.textContent = acc.setTotalIncome();
+  totalWithdrawalEl.textContent = acc.setTotalWithdrawal();
+}
+
 logInForm.addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -141,9 +151,7 @@ logInForm.addEventListener("submit", function (e) {
        
       });
 
-      totalBalanceEl.textContent = acc.setTotalBalance();
-      totalDepositEl.textContent = acc.setTotalIncome();
-      totalWithdrawalEl.textContent = acc.setTotalWithdrawal();
+      updateInfoUI(acc)
 
     } else {
       createErrorNotification(logInForm, 'Email or password is incorrect!')
@@ -215,7 +223,17 @@ logOut.addEventListener("click", function (e) {
 
 loanForm.addEventListener("submit", function (e) {
   e.preventDefault();
-  console.log(inputLoan);
+  if (Number(inputLoan) > 0) {
+    activeAccount.addTransaction(Number(inputLoan));
 
-  console.log(activeAccount.balance);
+    transactionList.innerHTML = "";
+
+    activeAccount.balance.forEach((transaction, i) => {
+      createTransactionElement(transaction, i);
+    });
+
+    inputLoanEl.value = "";
+
+    updateInfoUI(activeAccount);
+  }
 });
