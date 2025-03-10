@@ -7,6 +7,11 @@ const deleteForm = document.querySelector(".delete");
 const inputDeleteUsernameEl = document.querySelector(".input-username-delete");
 const inputDeletePasswordEl = document.querySelector(".input-password-delete");
 
+const transferForm = document.querySelector(".transfer");
+// prettier-ignore
+const inputTransferUsernameEl = document.querySelector(".input-username-transfer");
+const inputTransferAmountEl = document.querySelector(".input-number-transfer");
+
 let inputEmail;
 let inputPassword;
 let inputEmailSignUp;
@@ -19,6 +24,9 @@ let inputLoan;
 
 let inputDeleteUsername;
 let inputDeletePassword;
+
+let inputTransferUsername;
+let inputTransferAmount;
 
 inputEmailEl.addEventListener("input", function (e) {
   inputEmail = e.target.value;
@@ -45,6 +53,13 @@ inputDeleteUsernameEl.addEventListener("input", function (e) {
 });
 inputDeletePasswordEl.addEventListener("input", function (e) {
   inputDeletePassword = e.target.value;
+});
+
+inputTransferUsernameEl.addEventListener("input", function (e) {
+  inputTransferUsername = e.target.value;
+});
+inputTransferAmountEl.addEventListener("input", function (e) {
+  inputTransferAmount = e.target.value;
 });
 
 signUpLink.addEventListener("click", function (e) {
@@ -261,4 +276,25 @@ deleteForm.addEventListener("submit", function (e) {
 
   inputDeleteUsernameEl.value = "";
   inputDeletePasswordEl.value = "";
+});
+
+transferForm.addEventListener("submit", function (e) {
+  e.preventDefault;
+
+  console.log(inputTransferUsername, inputTransferAmount);
+
+  // prettier-ignore
+  if (manager.accounts.some(account => account.username === inputTransferUsername)) {
+    activeAccount.addTransaction(Number(-inputTransferAmount));
+    activeAccount.balance.forEach((transaction, i) => {
+      createTransactionElement(transaction, i);
+    });
+    updateInfoUI(activeAccount);
+
+    // prettier-ignore
+    manager.accounts.find(account => account.username === inputTransferUsername).addTransaction(Number(inputTransferAmount));
+
+    inputTransferUsernameEl.value = "";
+    inputTransferAmountEl.value = "";
+  }
 });
