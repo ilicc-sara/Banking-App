@@ -4,6 +4,9 @@ import "./style.css";
 import { signUpLink, signUpForm, overlay, logInForm, inputEmailEl, inputPasswordEl, inputEmailEl2, inputPasswordEl2, inputUsernameEl2, homePage, user, transactionList, totalBalanceEl, totalDepositEl, totalWithdrawalEl, sortContainer, logOut } from "./helpers";
 // import { createTransactionElement } from "./helpers";
 
+const loanForm = document.querySelector(".loan");
+const inputLoanEl = document.querySelector(".input-number-loan");
+
 let inputEmail;
 let inputPassword;
 let inputEmailSignUp;
@@ -11,6 +14,8 @@ let inputPasswordSignUp;
 let inputUsernameSignUp;
 
 let activeAccount;
+
+let inputLoan;
 
 inputEmailEl.addEventListener("input", function (e) {
   inputEmail = e.target.value;
@@ -28,6 +33,10 @@ inputUsernameEl2.addEventListener("input", function (e) {
   inputUsernameSignUp = e.target.value;
 });
 
+inputLoanEl.addEventListener("input", function (e) {
+  inputLoan = e.target.value;
+});
+
 signUpLink.addEventListener("click", function (e) {
   signUpForm.classList.remove("hidden");
   overlay.classList.remove("hidden");
@@ -38,39 +47,44 @@ overlay.addEventListener("click", function (e) {
   overlay.classList.add("hidden");
 });
 
-const account1 = {
-  username: "sara",
-  email: "sara@gmail.com",
-  password: "1111",
-  balance: [200, 300, -400, 1000, -700, 200, 300, -400, 1000, -700],
-};
-const account2 = {
-  username: "jonas",
-  email: "jonas@gmail.com",
-  password: "2222",
-  balance: [600, 500, -800, 2000, -1700],
-};
-const account3 = {
-  username: "pera",
-  email: "pera@gmail.com",
-  password: "3333",
-  balance: [100, 900, -500, 1200, -600],
-};
-
 class Account {
-  constructor(email, password, username) {
+  constructor(email, password, username, balance) {
     this.email = email;
     this.password = password;
     this.username = username;
-    this.balance = [];
+    this.balance = balance;
   }
 
-  // setTotalBalance() {
-  //   return this.balance.reduce((acc, cur) => {
-  //     acc + cur;
-  //   }, 0);
-  // }
+  setTotalBalance() {
+    return this.balance.reduce((acc, cur) => acc + cur);
+  }
+
+  setTotalIncome() {
+    // prettier-ignore
+    return this.balance.filter(transaction => transaction > 0).reduce((acc, cur)=> acc + cur);
+  }
+
+  setTotalWithdrawal() {
+    // prettier-ignore
+    return this.balance.filter(transaction => transaction < 0).reduce((acc, cur)=> acc + cur);
+  }
+
+  sortAscending() {
+    return this.balance.sort();
+  }
+
+  sortDescending() {
+    return this.balance.sort((a, b) => b - a);
+  }
 }
+
+// prettier-ignore
+const account1 = new Account("sara@gmail.com","1111", "sara", [200, 300, -400, 1000, -700, 300, 200, -350, 1100, -800]);
+// prettier-ignore
+const account2 = new Account("jonas@gmail.com", "2222", "jonas", [600, 500, -800, 2000, -1700, 200, 300, -400, 1000]);
+// prettier-ignore
+const account3 = new Account("pera@gmail.com", "3333", "pera", [100, 900, -500, 1200, -600, -800, 2000, -1700, 200]);
+
 class AccountManager {
   constructor() {
     this.accounts = [account1, account2, account3];
@@ -126,12 +140,10 @@ logInForm.addEventListener("submit", function (e) {
 
        
       });
-      // console.log(acc.balance.reduce((acc, cur)=> acc + cur));
-      totalBalanceEl.textContent = acc.balance.reduce((acc, cur)=> acc + cur);
-      totalDepositEl.textContent = acc.balance.filter(transaction => transaction > 0).reduce((acc, cur)=> acc + cur);
-      totalWithdrawalEl.textContent = acc.balance.filter(transaction => transaction < 0).reduce((acc, cur)=> acc + cur);
 
-      // console.log(acc.setTotalBalance());
+      totalBalanceEl.textContent = acc.setTotalBalance();
+      totalDepositEl.textContent = acc.setTotalIncome();
+      totalWithdrawalEl.textContent = acc.setTotalWithdrawal();
 
     } else {
       createErrorNotification(logInForm, 'Email or password is incorrect!')
@@ -165,7 +177,7 @@ signUpForm.addEventListener("submit", function (e) {
     console.log(inputEmailSignUp, inputPasswordSignUp, inputUsernameSignUp);
 
     // prettier-ignore
-    const newAccount = new Account(inputEmailSignUp, inputPasswordSignUp, inputUsernameSignUp);
+    const newAccount = new Account(inputEmailSignUp, inputPasswordSignUp, inputUsernameSignUp, []);
 
     manager.add(newAccount);
   } else {
@@ -180,23 +192,16 @@ signUpForm.addEventListener("submit", function (e) {
 sortContainer.addEventListener("click", function (e) {
   // prettier-ignore
   if (!e.target.classList.contains("sort-plus") && !e.target.classList.contains("sort-minus")) return;
+  transactionList.innerHTML = "";
 
   if (e.target.classList.contains("sort-plus")) {
-    transactionList.innerHTML = "";
-
-    const sortedAscending = activeAccount.balance.sort();
-
-    sortedAscending.forEach((transaction, i) => {
+    activeAccount.sortAscending().forEach((transaction, i) => {
       createTransactionElement(transaction, i);
     });
   }
 
   if (e.target.classList.contains("sort-minus")) {
-    transactionList.innerHTML = "";
-
-    const sortedDescending = activeAccount.balance.sort((a, b) => b - a);
-
-    sortedDescending.forEach((transaction, i) => {
+    activeAccount.sortDescending().forEach((transaction, i) => {
       createTransactionElement(transaction, i);
     });
   }
@@ -206,4 +211,11 @@ logOut.addEventListener("click", function (e) {
   logInForm.classList.remove("hidden");
   homePage.classList.add("hidden");
   transactionList.innerHTML = "";
+});
+
+loanForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+  console.log(inputLoan);
+
+  console.log(activeAccount.balance);
 });
