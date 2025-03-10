@@ -380,7 +380,10 @@ a:active {
 }
 
 .input-username-transfer,
-.input-number-transfer {
+.input-number-transfer,
+.input-number-loan,
+.input-username-delete,
+.input-password-delete {
   width: 175px;
 }
 

@@ -3,6 +3,10 @@ import "./style.css";
 // prettier-ignore
 import { signUpLink, signUpForm, overlay, logInForm, inputEmailEl, inputPasswordEl, inputEmailEl2, inputPasswordEl2, inputUsernameEl2, homePage, user, transactionList, totalBalanceEl, totalDepositEl, totalWithdrawalEl, sortContainer, logOut, loanForm, inputLoanEl } from "./helpers";
 
+const deleteForm = document.querySelector(".delete");
+const inputDeleteUsernameEl = document.querySelector(".input-username-delete");
+const inputDeletePasswordEl = document.querySelector(".input-password-delete");
+
 let inputEmail;
 let inputPassword;
 let inputEmailSignUp;
@@ -12,6 +16,9 @@ let inputUsernameSignUp;
 let activeAccount;
 
 let inputLoan;
+
+let inputDeleteUsername;
+let inputDeletePassword;
 
 inputEmailEl.addEventListener("input", function (e) {
   inputEmail = e.target.value;
@@ -31,6 +38,13 @@ inputUsernameEl2.addEventListener("input", function (e) {
 
 inputLoanEl.addEventListener("input", function (e) {
   inputLoan = e.target.value;
+});
+
+inputDeleteUsernameEl.addEventListener("input", function (e) {
+  inputDeleteUsername = e.target.value;
+});
+inputDeletePasswordEl.addEventListener("input", function (e) {
+  inputDeletePassword = e.target.value;
 });
 
 signUpLink.addEventListener("click", function (e) {
@@ -92,6 +106,10 @@ class AccountManager {
 
   add(acc) {
     this.accounts.push(acc);
+  }
+
+  deleteAccount(account) {
+    return (this.accounts = this.accounts.filter((acc) => acc !== account));
   }
 }
 
@@ -211,25 +229,36 @@ sortContainer.addEventListener("click", function (e) {
   }
 });
 
-logOut.addEventListener("click", function (e) {
+function logOutFunction() {
   logInForm.classList.remove("hidden");
   homePage.classList.add("hidden");
   transactionList.innerHTML = "";
-});
+}
+
+logOut.addEventListener("click", logOutFunction);
 
 loanForm.addEventListener("submit", function (e) {
   e.preventDefault();
   if (Number(inputLoan) > 0) {
-    activeAccount.addTransaction(Number(inputLoan));
-
     transactionList.innerHTML = "";
 
+    activeAccount.addTransaction(Number(inputLoan));
     activeAccount.balance.forEach((transaction, i) => {
       createTransactionElement(transaction, i);
     });
-
-    inputLoanEl.value = "";
-
     updateInfoUI(activeAccount);
+    inputLoanEl.value = "";
   }
+});
+
+deleteForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+  // prettier-ignore
+  if (activeAccount.username === inputDeleteUsername && activeAccount.password === inputDeletePassword) {
+    manager.deleteAccount(activeAccount);
+    logOutFunction()
+  }
+
+  inputDeleteUsernameEl.value = "";
+  inputDeletePasswordEl.value = "";
 });
