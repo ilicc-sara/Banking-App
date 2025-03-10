@@ -2,15 +2,8 @@
 import "./style.css";
 // prettier-ignore
 import { signUpLink, signUpForm, overlay, logInForm, inputEmailEl, inputPasswordEl, inputEmailEl2, inputPasswordEl2, inputUsernameEl2, homePage, user, transactionList, totalBalanceEl, totalDepositEl, totalWithdrawalEl, sortContainer, logOut, loanForm, inputLoanEl } from "./helpers";
-
-const deleteForm = document.querySelector(".delete");
-const inputDeleteUsernameEl = document.querySelector(".input-username-delete");
-const inputDeletePasswordEl = document.querySelector(".input-password-delete");
-
-const transferForm = document.querySelector(".transfer");
 // prettier-ignore
-const inputTransferUsernameEl = document.querySelector(".input-username-transfer");
-const inputTransferAmountEl = document.querySelector(".input-number-transfer");
+import { deleteForm, inputDeleteUsernameEl, inputDeletePasswordEl, transferForm, inputTransferUsernameEl, inputTransferAmountEl, greetContainer } from "./helpers";
 
 let inputEmail;
 let inputPassword;
@@ -145,6 +138,14 @@ function createErrorNotification(parentElement, text) {
   // });
 }
 
+function createErrorPage(text) {
+  const notification = document.createElement("div");
+  notification.innerHTML = `${text}<button class="error-btn-page">❌</button>`;
+  notification.className = "error-text-page";
+
+  greetContainer.appendChild(notification);
+}
+
 function createTransactionElement(transaction, i) {
   const item = document.createElement("li");
   // prettier-ignore
@@ -262,8 +263,10 @@ loanForm.addEventListener("submit", function (e) {
       createTransactionElement(transaction, i);
     });
     updateInfoUI(activeAccount);
-    inputLoanEl.value = "";
+  } else {
+    createErrorPage("Invalid load amount!");
   }
+  inputLoanEl.value = "";
 });
 
 deleteForm.addEventListener("submit", function (e) {
@@ -272,6 +275,8 @@ deleteForm.addEventListener("submit", function (e) {
   if (activeAccount.username === inputDeleteUsername && activeAccount.password === inputDeletePassword) {
     manager.deleteAccount(activeAccount);
     logOutFunction()
+  } else {
+    createErrorPage("Email or password is incorrect!")
   }
 
   inputDeleteUsernameEl.value = "";
@@ -280,11 +285,8 @@ deleteForm.addEventListener("submit", function (e) {
 
 transferForm.addEventListener("submit", function (e) {
   e.preventDefault;
-
-  console.log(inputTransferUsername, inputTransferAmount);
-
   // prettier-ignore
-  if (manager.accounts.some(account => account.username === inputTransferUsername)) {
+  if (manager.accounts.some(account => account.username === inputTransferUsername) && Number(inputTransferAmount) > 0) {
     activeAccount.addTransaction(Number(-inputTransferAmount));
     activeAccount.balance.forEach((transaction, i) => {
       createTransactionElement(transaction, i);
@@ -294,7 +296,16 @@ transferForm.addEventListener("submit", function (e) {
     // prettier-ignore
     manager.accounts.find(account => account.username === inputTransferUsername).addTransaction(Number(inputTransferAmount));
 
-    inputTransferUsernameEl.value = "";
-    inputTransferAmountEl.value = "";
+    createErrorPage("Successfully transferred!")
+  } else {
+    createErrorPage("There's no account with this username!")
   }
+  inputTransferUsernameEl.value = "";
+  inputTransferAmountEl.value = "";
+});
+
+greetContainer.addEventListener("click", function (e) {
+  if (!e.target.classList.contains("error-btn-page")) return;
+  const notification = e.target.closest(".error-text-page");
+  notification.remove();
 });

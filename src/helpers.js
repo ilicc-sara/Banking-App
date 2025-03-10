@@ -26,3 +26,17 @@ export const logOut = document.querySelector(".log-out");
 
 export const loanForm = document.querySelector(".loan");
 export const inputLoanEl = document.querySelector(".input-number-loan");
+
+export const deleteForm = document.querySelector(".delete");
+// prettier-ignore
+export const inputDeleteUsernameEl = document.querySelector(".input-username-delete");
+// prettier-ignore
+export const inputDeletePasswordEl = document.querySelector(".input-password-delete");
+
+export const transferForm = document.querySelector(".transfer");
+// prettier-ignore
+export const inputTransferUsernameEl = document.querySelector(".input-username-transfer");
+// prettier-ignore
+export const inputTransferAmountEl = document.querySelector(".input-number-transfer");
+
+export const greetContainer = document.querySelector(".greet-container");
