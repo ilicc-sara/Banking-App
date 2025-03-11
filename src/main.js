@@ -11,13 +11,9 @@ let inputEmailSignUp;
 let inputPasswordSignUp;
 let inputUsernameSignUp;
 
-let activeAccount;
-
 let inputLoan;
-
 let inputDeleteUsername;
 let inputDeletePassword;
-
 let inputTransferUsername;
 let inputTransferAmount;
 
@@ -110,6 +106,11 @@ const account3 = new Account("pera@gmail.com", "3333", "pera", [100, 900, -500, 
 class AccountManager {
   constructor() {
     this.accounts = [account1, account2, account3];
+    this.activeAccount = null;
+  }
+
+  setActiveAccount(account) {
+    this.activeAccount = account;
   }
 
   add(acc) {
@@ -126,16 +127,11 @@ const manager = new AccountManager();
 function createErrorNotification(parentElement, text) {
   if (document.querySelector(".error-text")) return;
 
-  const notification = document.createElement("ul");
-  notification.innerHTML = `<li > ${text} <button type="button" class="error-btn">❌</button> </li>`;
+  const notification = document.createElement("div");
+  notification.innerHTML = `${text}<button class="error-btn">❌</button>`;
   notification.className = "error-text";
 
   parentElement.appendChild(notification);
-  const errorBtn = notification.querySelector(".error-btn");
-
-  // errorBtn.addEventListener("click", function (e) {
-  //   notification.remove();
-  // });
 }
 
 function createErrorPage(text) {
@@ -155,10 +151,10 @@ function createTransactionElement(transaction, i) {
   transactionList.appendChild(item);
 }
 
-function updateInfoUI(acc) {
-  totalBalanceEl.textContent = acc.setTotalBalance();
-  totalDepositEl.textContent = acc.setTotalIncome();
-  totalWithdrawalEl.textContent = acc.setTotalWithdrawal();
+function updateInfoUI(account) {
+  totalBalanceEl.textContent = account.setTotalBalance();
+  totalDepositEl.textContent = account.setTotalIncome();
+  totalWithdrawalEl.textContent = account.setTotalWithdrawal();
 }
 
 logInForm.addEventListener("submit", function (e) {
@@ -167,7 +163,7 @@ logInForm.addEventListener("submit", function (e) {
   manager.accounts.find(function (acc) {
     // prettier-ignore
     if (inputEmail === acc.email && inputPassword === acc.password) {   
-      activeAccount = acc;
+      manager.setActiveAccount(acc)
       logInForm.classList.add("hidden");
 
       homePage.classList.remove("hidden");
@@ -177,8 +173,6 @@ logInForm.addEventListener("submit", function (e) {
 
       acc.balance.forEach((transaction, i) => {
         createTransactionElement(transaction, i)
-
-       
       });
 
       updateInfoUI(acc)
@@ -233,13 +227,13 @@ sortContainer.addEventListener("click", function (e) {
   transactionList.innerHTML = "";
 
   if (e.target.classList.contains("sort-plus")) {
-    activeAccount.sortAscending().forEach((transaction, i) => {
+    manager.activeAccount.sortAscending().forEach((transaction, i) => {
       createTransactionElement(transaction, i);
     });
   }
 
   if (e.target.classList.contains("sort-minus")) {
-    activeAccount.sortDescending().forEach((transaction, i) => {
+    manager.activeAccount.sortDescending().forEach((transaction, i) => {
       createTransactionElement(transaction, i);
     });
   }
@@ -258,11 +252,11 @@ loanForm.addEventListener("submit", function (e) {
   if (Number(inputLoan) > 0) {
     transactionList.innerHTML = "";
 
-    activeAccount.addTransaction(Number(inputLoan));
-    activeAccount.balance.forEach((transaction, i) => {
+    manager.activeAccount.addTransaction(Number(inputLoan));
+    manager.activeAccount.balance.forEach((transaction, i) => {
       createTransactionElement(transaction, i);
     });
-    updateInfoUI(activeAccount);
+    updateInfoUI(manager.activeAccount);
   } else {
     createErrorPage("Invalid load amount!");
   }
@@ -272,8 +266,8 @@ loanForm.addEventListener("submit", function (e) {
 deleteForm.addEventListener("submit", function (e) {
   e.preventDefault();
   // prettier-ignore
-  if (activeAccount.username === inputDeleteUsername && activeAccount.password === inputDeletePassword) {
-    manager.deleteAccount(activeAccount);
+  if (manager.activeAccount.username === inputDeleteUsername && manager.activeAccount.password === inputDeletePassword) {
+    manager.deleteAccount(manager.activeAccount);
     logOutFunction()
   } else {
     createErrorPage("Email or password is incorrect!")
@@ -287,11 +281,11 @@ transferForm.addEventListener("submit", function (e) {
   e.preventDefault;
   // prettier-ignore
   if (manager.accounts.some(account => account.username === inputTransferUsername) && Number(inputTransferAmount) > 0) {
-    activeAccount.addTransaction(Number(-inputTransferAmount));
-    activeAccount.balance.forEach((transaction, i) => {
+    manager.activeAccount.addTransaction(Number(-inputTransferAmount));
+    manager.activeAccount.balance.forEach((transaction, i) => {
       createTransactionElement(transaction, i);
     });
-    updateInfoUI(activeAccount);
+    updateInfoUI(manager.activeAccount);
 
     // prettier-ignore
     manager.accounts.find(account => account.username === inputTransferUsername).addTransaction(Number(inputTransferAmount));
