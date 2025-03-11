@@ -17,6 +17,12 @@ let inputDeletePassword;
 let inputTransferUsername;
 let inputTransferAmount;
 
+let day = new Date().getDate();
+let month = new Date().getMonth() + 1;
+let year = new Date().getFullYear();
+
+let date = `${day}.${month}.${year}`;
+
 inputEmailEl.addEventListener("input", function (e) {
   inputEmail = e.target.value;
 });
@@ -72,25 +78,20 @@ class Account {
   setTotalBalance() {
     return this.balance.reduce((acc, cur) => acc + cur);
   }
-
   setTotalIncome() {
     // prettier-ignore
     return this.balance.filter(transaction => transaction > 0).reduce((acc, cur)=> acc + cur);
   }
-
   setTotalWithdrawal() {
     // prettier-ignore
     return this.balance.filter(transaction => transaction < 0).reduce((acc, cur)=> acc + cur);
   }
-
   sortAscending() {
     return this.balance.sort();
   }
-
   sortDescending() {
     return this.balance.sort((a, b) => b - a);
   }
-
   addTransaction(number) {
     this.balance.push(number);
   }
@@ -145,9 +146,8 @@ function createErrorPage(text) {
 function createTransactionElement(transaction, i) {
   const item = document.createElement("li");
   // prettier-ignore
-  item.innerHTML = `<div class="type-${(transaction > 0) ? "deposit" : "withdrawal"}"><span class="num-transaction">${i+1}</span> ${(transaction > 0) ? "Deposit" : "Withdrawal"}</div> <span class="date">07.03.2025.</span> <span class="number">${transaction}$</span>`;
+  item.innerHTML = `<div class="type-${(transaction > 0) ? "deposit" : "withdrawal"}"><span class="num-transaction">${i+1}</span> ${(transaction > 0) ? "Deposit" : "Withdrawal"}</div> <span class="date">${date}</span> <span class="number">${transaction}$</span>`;
   item.className = "transaction-item";
-
   transactionList.appendChild(item);
 }
 
