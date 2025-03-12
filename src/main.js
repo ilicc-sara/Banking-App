@@ -281,6 +281,7 @@ transferForm.addEventListener("submit", function (e) {
   e.preventDefault;
   // prettier-ignore
   if (manager.accounts.some(account => account.username === inputTransferUsername) && Number(inputTransferAmount) > 0) {
+    transactionList.innerHTML = "";
     manager.activeAccount.addTransaction(Number(-inputTransferAmount));
     manager.activeAccount.balance.forEach((transaction, i) => {
       createTransactionElement(transaction, i);
