@@ -17,12 +17,6 @@ let inputDeletePassword;
 let inputTransferUsername;
 let inputTransferAmount;
 
-let day = new Date().getDate();
-let month = new Date().getMonth() + 1;
-let year = new Date().getFullYear();
-
-let date = `${day}.${month}.${year}`;
-
 inputEmailEl.addEventListener("input", function (e) {
   inputEmail = e.target.value;
 });
@@ -38,18 +32,15 @@ inputPasswordEl2.addEventListener("input", function (e) {
 inputUsernameEl2.addEventListener("input", function (e) {
   inputUsernameSignUp = e.target.value;
 });
-
 inputLoanEl.addEventListener("input", function (e) {
   inputLoan = e.target.value;
 });
-
 inputDeleteUsernameEl.addEventListener("input", function (e) {
   inputDeleteUsername = e.target.value;
 });
 inputDeletePasswordEl.addEventListener("input", function (e) {
   inputDeletePassword = e.target.value;
 });
-
 inputTransferUsernameEl.addEventListener("input", function (e) {
   inputTransferUsername = e.target.value;
 });
@@ -125,6 +116,17 @@ class AccountManager {
 
 const manager = new AccountManager();
 
+class PublishedDate {
+  constructor() {
+    this.day = new Date().getDate();
+    this.month = new Date().getMonth() + 1;
+    this.year = new Date().getFullYear();
+    this.date = `${this.day}.${this.month}.${this.year}`;
+  }
+}
+
+const date = new PublishedDate();
+
 function createErrorNotification(parentElement, text) {
   if (document.querySelector(".error-text")) return;
 
@@ -146,7 +148,7 @@ function createErrorPage(text) {
 function createTransactionElement(transaction, i) {
   const item = document.createElement("li");
   // prettier-ignore
-  item.innerHTML = `<div class="type-${(transaction > 0) ? "deposit" : "withdrawal"}"><span class="num-transaction">${i+1}</span> ${(transaction > 0) ? "Deposit" : "Withdrawal"}</div> <span class="date">${date}</span> <span class="number">${transaction}$</span>`;
+  item.innerHTML = `<div class="type-${(transaction > 0) ? "deposit" : "withdrawal"}"><span class="num-transaction">${i+1}</span> ${(transaction > 0) ? "Deposit" : "Withdrawal"}</div> <span class="date">${date.date}</span> <span class="number">${transaction}$</span>`;
   item.className = "transaction-item";
   transactionList.appendChild(item);
 }
